@@ -2,16 +2,17 @@
 
 - table: Samples
   columns:
-    id_sample: {key: yes, ref: Models}
+    id_sample: {key: yes}
     compound_concentration:
     id_compound:
     tissue_type:
     solvent_type:
+    id_model: {ref: Models}
 
 - table: Compounds
   display: accent2
   columns:
-    id_compound: {key: yes, ref: Sample}
+    id_compound: {key: yes, ref: Samples}
     lot_number:
     id_cas:
     isomeric_smiles:
@@ -20,14 +21,36 @@
 - table: Models
   display: accent3
   columns:
-    id_model: {key: yes, ref: Model_barrier, ref: Model_pbpk}
+    id_model: {key: yes}
     developer:
     url_docs:
     model_name:
     model_applicability:
     model_publication:
-    model_type:
+    model_barrier: {ref: Model_barrier}
+    model_pbpk: {ref: Model_pbpk}
 
-    table: Model_barrier
+- table: Model_barrier
+  dispplay: accent3
+  columns:
+    id_model: {key: yes}
+    name:
+    parameter1:
+    parameter2:
+    parameter3:
+    input:
+    output:
+    id_sample:
 
-    table: Model_pbpk
+- table: Model_pbpk
+  dispplay: accent3
+  columns:
+    id_model: {key: yes}
+    name:
+    parameter1:
+    parameter2:
+    parameter3:
+    input:
+    output:
+    id_sample:
+
