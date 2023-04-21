@@ -1,12 +1,13 @@
 # Tables and columns
 
 - table: Samples
+  display: accent2
   columns:
     id_sample: {key: yes}
     compound_concentration:
     id_compound:
     tissue_type:
-    solvent_type:
+    solvent_name:
     id_model: {ref: Models}
 
 - table: Compounds
@@ -23,18 +24,18 @@
   columns:
     id_model: {key: yes}
     developer:
-    url_docs:
+    model_url:
     model_name:
     model_applicability:
     model_publication:
     model_barrier: {ref: Model_barrier}
     model_pbpk: {ref: Model_pbpk}
 
+
 - table: Model_barrier
   dispplay: accent3
   columns:
     id_model: {key: yes}
-    name:
     parameter1:
     parameter2:
     parameter3:
@@ -46,11 +47,100 @@
   dispplay: accent3
   columns:
     id_model: {key: yes}
-    name:
     parameter1:
     parameter2:
     parameter3:
     input:
     output:
     id_sample:
+
+- table: Solvents
+  segment: *tran
+  display: accent2
+  columns:
+    id_compound: {key: yes, ref: Compounds}
+    solvent_name: {ref: Samples}
+    solvent_units:
+    concentration_solvent:
+
+- table: Experiment
+  segment: *tran
+  display: accent2
+  columns:
+    id_experiment: {key: yes}
+    id_project: {ref: Projects}
+    id_sample: {ref: Samples}
+    id_solvent: {ref: Solvents}
+    id_person: {ref: Persons}
+    id_organization: {ref: Organizations}
+    id_compound: {ref: Compounds}
+    id_model: {ref: Models}
+    id_task: {ref: Tasks}
+    id_deliverable: {ref: Deliverables}
+    id_work_package: {ref: Workpackages}
+    compound_concentration: {ref: Compounds}
+    compound_units: {ref: Compounds}
+    solvent_concentration: {ref: Solvents}
+    solvent_units: {ref: Solvents}
+    date:
+    place:
+    is_part_of:
+    incubation_time:
+
+- table: Persons
+  segment: *tran
+  display: accent4
+  columns:
+    id_person: {key: yes}
+    first_name:
+    surname:
+    email:
+    id_organization: {ref: Organizations}
+    id_depertment: {ref: Organizations}
+    phone:
+
+- table: Organizations
+  segment: *tran
+  display: accent4
+  columns:
+    id_organization: {key: yes}
+    organization_name:
+    organization_address:
+    organization_postal_code:
+    organization_city:
+    organization_country:
+
+- table: Projects
+  segment: *tran
+  display: accent4
+  columns:
+    id_project: {key: yes}
+    project_name:
+    project_url:
+    project_lead:
+    project_acronym:
+
+- table: Deliverables
+  segment: *tran
+  display: accent4
+  columns:
+    id_deliverable: {key: yes}
+    id_project: {ref: Projects}
+    deliverable_description:
+
+- table: Tasks
+  segment: *tran
+  display: accent4
+  columns:
+    id_task: {key: yes}
+    id_project: {ref: Projects}
+    task_description:
+
+- table: Workpackages
+  segment: *tran
+  display: accent4
+  columns:
+    id_workpackage: {key: yes}
+    id_project: {ref: Projects}
+    workpackage_description:
 
