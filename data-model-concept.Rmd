@@ -1,0 +1,25 @@
+---
+title: "Conceptual Data Model"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# devtools::install_github("bergant/datamodelr")
+library(datamodelr)
+library(DiagrammeR)
+```
+
+```{r}
+file_path <- here::here("conceptual-datamodel.yml")
+dm <- dm_read_yaml(file_path)
+dm
+
+graph <- dm_create_graph(dm, rankdir = "BT")
+dm_render_graph(graph)
+```
+

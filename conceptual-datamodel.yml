@@ -1,0 +1,33 @@
+# Tables and columns
+
+- table: Samples
+  columns:
+    id_sample: {key: yes, ref: Models}
+    compound_concentration:
+    id_compound:
+    tissue_type:
+    solvent_type:
+
+- table: Compounds
+  display: accent2
+  columns:
+    id_compound: {key: yes, ref: Sample}
+    lot_number:
+    id_cas:
+    isomeric_smiles:
+    inchi:
+
+- table: Models
+  display: accent3
+  columns:
+    id_model: {key: yes, ref: Model_barrier, ref: Model_pbpk}
+    developer:
+    url_docs:
+    model_name:
+    model_applicability:
+    model_publication:
+    model_type:
+
+    table: Model_barrier
+
+    table: Model_pbpk
