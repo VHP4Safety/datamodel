@@ -14,10 +14,10 @@
   display: accent2
   columns:
     id_compound: {key: yes, ref: Samples}
-    lot_number:
+    name_compound:
     id_cas:
-    isomeric_smiles:
-    inchi:
+    chemical_structure:
+    global_identifier:
 
 - table: Models
   display: accent3
