@@ -1,0 +1,111 @@
+id: https://github.com/VHP4Safety/datamodel/vhp4safety-schema
+name: vhp4safety-schema
+classes:
+  in-silico-model:
+    is_a: NamedThing
+    description: >-
+      A computer model
+    class_uri: schema:in-silico-model
+    mixins:
+      - HasAliases
+    slots:
+      - programming-language-implementation
+      - applicability-domain
+      - is-classifier
+      - algorithm-family
+      - input-type
+
+in-vivo-model:
+    is_a: NamedThing
+    description: >-
+      Experimental assay procedure in animal 
+    class_uri: schema:in-vivo-model
+    mixins:
+      - HasAliases
+    slots:
+      - species
+      - is-ex-vivo
+      - tissue-type
+
+
+  in-vitro-model:
+  is_a: NamedThing
+    description: >-
+      Experimental assay or procedure 
+    class_uri: schema:in-vitro-model
+    mixins:
+      - HasAliases
+    slots:
+      - model-system
+      - tissue-type
+      - readout
+      - endpoint
+      - protocol
+      - reference
+
+  sample:
+    is_a: NamedThing
+    description: >-
+      A subset of the population or material used for analysis or testing
+    class_uri: schema:sample
+    mixins:
+      - HasAliases
+    slots:
+    
+  service: 
+  is_a: NamedThing
+    description: >-
+      A software service or package that has_role 
+    class_uri: schema:service
+    mixins:
+      - HasAliases
+    slots:
+      - is-hosted
+      - is-internal
+      - is-open-source
+      - has_role
+      - reference
+      - has-api
+      - is-free
+      - licence-type
+
+  in-vivo-model:
+    is_a: NamedThing
+    description: >-
+      An assay or procedure in a live animal 
+    class_uri: schema:in-vivo-model
+    mixins:
+      - HasAliases
+    slots:
+
+  adverse-outcome-pathway:
+  is_a: NamedThing
+    description: >-
+      An assay or procedure in a live animal 
+    class_uri: schema:adverse-outcome-pathway
+    mixins:
+      - HasAliases
+    slots:
+
+  chemical-compound:
+    is_a: NamedThing
+    description: >-
+      A chemical substance
+    class_uri: schema:chemical-compound
+    mixins:
+      - HasAliases
+    slots:
+      - generic-name
+      - instance-of-compound-class 
+      - toxbank-wiki
+      - wikidata-q-id
+      - mass
+      - chemical-formula
+      - smiles
+      - smiles-is-isomeric
+      - inchi
+      - inchi-key
+      - pubchem-cid
+      - has-role
+      - xenobiotic-metabolism-pathway
+      - part-of
