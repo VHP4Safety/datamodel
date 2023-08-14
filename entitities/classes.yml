@@ -1,91 +1,38 @@
 id: https://github.com/VHP4Safety/datamodel/vhp4safety-schema
 name: vhp4safety-schema
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  schema: http://schema.org/
+  personinfo: https://w3id.org/linkml/examples/personinfo/
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  prov: http://www.w3.org/ns/prov#
+  GSSO: http://purl.obolibrary.org/obo/GSSO_
+  PW: http://purl.obolibrary.org/obo/PW_
+  famrel: https://example.org/FamilialRelations#
+  EDAM: http://edamontology.org/
+  GDMT: http://vocab.fairdatacollective.org/gdmt/
+  CHEMINF: http://semanticscience.org/resource/CHEMINF_
+  SIO: http://semanticscience.org/resource/SIO_
+
+imports:
+  - linkml:types
+
+default_range: string
+
 classes:
-  in-silico-model:
-    is_a: NamedThing
-    description: >-
-      A computer model
-    class_uri: schema:in-silico-model
-    mixins:
-      - HasAliases
-    slots:
-      - programming-language-implementation
-      - applicability-domain
-      - is-classifier
-      - algorithm-family
-      - input-type
-
-in-vivo-model:
-    is_a: NamedThing
-    description: >-
-      Experimental assay procedure in animal 
-    class_uri: schema:in-vivo-model
-    mixins:
-      - HasAliases
-    slots:
-      - species
-      - is-ex-vivo
-      - tissue-type
-
-
-  in-vitro-model:
-  is_a: NamedThing
-    description: >-
-      Experimental assay or procedure 
-    class_uri: schema:in-vitro-model
-    mixins:
-      - HasAliases
-    slots:
-      - model-system
-      - tissue-type
-      - readout
-      - endpoint
-      - protocol
-      - reference
-
-  sample:
-    is_a: NamedThing
-    description: >-
-      A subset of the population or material used for analysis or testing
-    class_uri: schema:sample
-    mixins:
-      - HasAliases
-    slots:
-    
-  service: 
-  is_a: NamedThing
-    description: >-
-      A software service or package that has_role 
-    class_uri: schema:service
-    mixins:
-      - HasAliases
-    slots:
-      - is-hosted
-      - is-internal
-      - is-open-source
-      - has_role
-      - reference
-      - has-api
-      - is-free
-      - licence-type
-
-  in-vivo-model:
-    is_a: NamedThing
-    description: >-
-      An assay or procedure in a live animal 
-    class_uri: schema:in-vivo-model
-    mixins:
-      - HasAliases
-    slots:
-
-  adverse-outcome-pathway:
-  is_a: NamedThing
-    description: >-
-      An assay or procedure in a live animal 
-    class_uri: schema:adverse-outcome-pathway
-    mixins:
-      - HasAliases
-    slots:
+  NamedThing:
+      description: >-
+        A generic grouping for any identifiable entity
+      slots:
+        - id
+        - name
+        - description
+      close_mappings:
+      - schema:Thing
+  
+  HasAliases:
+    description: SPACEHOLDER
 
   chemical-compound:
     is_a: NamedThing
@@ -96,9 +43,9 @@ in-vivo-model:
       - HasAliases
     slots:
       - generic-name
-      - instance-of-compound-class 
-      - toxbank-wiki
-      - wikidata-q-id
+      # - instance-of-compound-class 
+      # - toxbank-wiki
+      - wikidata-id
       - mass
       - chemical-formula
       - smiles
@@ -106,6 +53,122 @@ in-vivo-model:
       - inchi
       - inchi-key
       - pubchem-cid
-      - has-role
+      - role
       - xenobiotic-metabolism-pathway
-      - part-of
+      - is-part-of
+
+  # in-silico-model:
+  #   is_a: NamedThing
+  #   description: >-
+  #     A computer model
+  #   class_uri: schema:in-silico-model
+  #   mixins:
+  #     - HasAliases
+  #   slots:
+  #     - programming-language-implementation
+  #     - applicability-domain
+  #     - is-classifier
+  #     - algorithm-family
+  #     - input-type
+
+  # in-vivo-model:
+  #     is_a: NamedThing
+  #     description: >-
+  #       Experimental assay procedure in animal 
+  #     class_uri: schema:in-vivo-model
+  #     mixins:
+  #       - HasAliases
+  #     slots:
+  #       - species
+  #       - is-ex-vivo
+  #       - tissue-type
+
+
+
+  # in-vitro-model:
+  #   is_a: NamedThing
+  #   description: >-
+  #     Experimental assay or procedure 
+  #   class_uri: schema:in-vitro-model
+  #   mixins:
+  #     - HasAliases
+  #   slots:
+  #     - model-system
+  #     - tissue-type
+  #     - readout
+  #     - endpoint
+  #     - protocol
+  #     - reference
+
+  # sample:
+  #   is_a: NamedThing
+  #   description: >-
+  #     A subset of the population or material used for analysis or testing
+  #   class_uri: schema:sample
+  #   mixins:
+  #     - HasAliases
+      
+  # service: 
+  #   is_a: NamedThing
+  #   description: >-
+  #     A software service or package that has_role 
+  #   class_uri: schema:service
+  #   mixins:
+  #     - HasAliases
+  #   slots:
+  #     - is-hosted
+  #     - is-internal
+  #     - is-open-source
+  #     - has_role
+  #     - reference
+  #     - has-api
+  #     - is-free
+  #     - licence-type
+
+  # adverse-outcome-pathway:
+  #   is_a: NamedThing
+  #   description: >-
+  #     An assay or procedure in a live animal 
+  #   class_uri: schema:adverse-outcome-pathway
+  #   mixins:
+  #     - HasAliases
+
+
+
+
+slots:
+  id:
+    slot_uri: schema:identifier
+  name:
+    slot_uri: schema:name
+  description:
+    slot_uri: SIO:000136
+  generic-name:
+    slot_uri: schema:name
+  # instance-of-compound-class:
+  #   slot_uri: schema:
+  # toxbank-wiki-link:
+  #   slot_uri: schema:
+  wikidata-id:
+    slot_uri: CHEMINF:000567
+  mass:
+    slot_uri: schema:Mass
+    range: float
+  chemical-formula:
+    slot_uri: EDAM:data_0846
+  smiles:
+    slot_uri: EDAM:format_1196
+  smiles-is-isomeric:
+    slot_uri: CHEMINF:000032
+  inchi:
+    slot_uri: EDAM:format_1197
+  inchi-key:
+    slot_uri: EDAM:format_1199
+  pubchem-cid:
+    slot_uri: EDAM:data_1172
+  role:
+    slot_uri: schema:Role
+  xenobiotic-metabolism-pathway:
+    slot_uri: PW:0001229
+  is-part-of:
+    slot_uri: GDMT:IsPartOf

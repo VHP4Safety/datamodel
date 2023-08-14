@@ -1,0 +1,8 @@
+// {type:class}
+// {direction:topDown}
+// {generate:true}
+
+
+[NamedThing|id:string;name:string;description:string]^-[Chemical-compound|generic_name:string;wikidata_id:string;mass:string;chemical_formula:string;smiles:string;smiles_is_isomeric:string;inchi:string;inchi_key:string;pubchem_cid:string;role:string;xenobiotic_metabolism_pathway:string;is_part_of:string;id(i):string;name(i):string;description(i):string]
+[Chemical-compound]uses-.->[HasAliases]
+[Chemical-compound]uses-.->[HasAliases]

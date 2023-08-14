@@ -1,0 +1,8 @@
+{% extends "graph_models_output.dot" %}
+
+{% block graph_global_attributes %}
+    // Define custom styling
+    graph [bgcolor=transparent]
+    node [shape=box, style=rounded, color=blue, fontname=Helvetica, fontsize=12]
+    edge [color=gray, fontname=Helvetica, fontsize=10]
+{% endblock graph_global_attributes %}
