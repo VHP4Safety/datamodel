@@ -8,7 +8,16 @@
     id_compound:
     tissue_type:
     solvent_name:
-    id_model: {ref: Models}
+    id_biological_model: {ref: Biological_models}
+
+- table: Exposure
+  display: accent6
+  columns:
+    id_exposure: {key: yes}
+    id_experiment:
+    study_design:
+    id_sample:
+    dose_metrics:
 
 - table: Compounds
   display: accent2
@@ -18,24 +27,58 @@
     id_cas:
     isomeric_smiles:
     inchi:
+    chemical_supplier:
+    batch:
+    id_chemical_parameters: {ref: Chemical_parameters}
 
-- table: Models
+- table: Computational_models
   display: accent3
   columns:
-    id_model: {key: yes}
+    id_computational_model: {key: yes}
     developer:
-    model_url:
-    model_name:
-    model_applicability:
-    model_publication:
-    model_barrier: {ref: Model_barrier}
-    model_pbpk: {ref: Model_pbpk}
+    computational_model_url:
+    computational_model_name:
+    computational_model_applicability:
+    computational_model_publication:
+    id_pbpk_model: {ref: PBPK_model}
+    id_qaop_model: {ref: qAOP_model}
 
-
-- table: Model_barrier
-  dispplay: accent3
+- table: Biological_models
+  display: accent3
   columns:
-    id_model: {key: yes}
+    id_biological_model: {key: yes}
+    developer:
+    biological_model_url:
+    biological_model_name:
+    biological_model_applicability:
+    biological_model_publication:
+    id_barrier_model: {ref: Barrier_model}
+    id_invitro_model: {ref: Invitro_model}
+
+- table: Invitro_model
+  display:
+  columns:
+    id_invitro_model: {key: yes}
+    id_biological_model:
+    cell_name:
+    cell_line_origin:
+    provider_name:
+    provider_catalog_id:
+    provide_batch_id:
+    cell_type:
+    organism:
+    organ:
+    tissue:
+    growth_properties:
+    input:
+    output:
+    id_sample:
+
+- table: Barrier_model
+  display:
+  columns:
+    id_barrier_model: {key: yes}
+    id_biological_model:
     parameter1:
     parameter2:
     parameter3:
@@ -43,10 +86,54 @@
     output:
     id_sample:
 
-- table: Model_pbpk
-  dispplay: accent3
+- table: PBPK_model
+  display: accent5
   columns:
-    id_model: {key: yes}
+    id_pbpk_model: {key: yes}
+    id_computational_model:
+    id_chemical_parameters: {ref: Chemical_parameters}
+    id_physiological_parameters: {ref: Physiological_parameters}
+    input:
+    output:
+    id_sample:
+
+- table: Physiological_parameters
+  display:
+  columns:
+    id_physiological_parameters: {key: yes}
+    id_pbpk_model:
+    sex:
+    weight:
+    race:
+    age:
+    genetics:
+    organ dysfunction:
+    pregnancy:
+    organ_volumes:
+    tissue_blood_flows:
+    tissue_composition:
+    cardiac_output:
+
+- table: Chemical_parameters
+  display:
+  columns:
+    id_chemical_parameters: {key: yes}
+    id_compound: {ref: Compounds}
+    molecular_weight:
+    LogP:
+    pKa:
+    protein_binding:
+    compound_type:
+    receptor_binding:
+    solubility:
+    permiability:
+    transport:
+
+- table: qAOP_model
+  display: accent5
+  columns:
+    id_qaop_model: {key: yes}
+    id_computational_model:
     parameter1:
     parameter2:
     parameter3:
@@ -55,7 +142,7 @@
     id_sample:
 
 - table: Solvents
-  segment: *tran
+  segment:
   display: accent2
   columns:
     id_compound: {key: yes, ref: Compounds}
@@ -65,21 +152,21 @@
 
 - table: Experiment
   segment: *tran
-  display: accent2
+  display: accent6
   columns:
     id_experiment: {key: yes}
     id_project: {ref: Projects}
+    id_computational_model: {ref: Computational_models}
+    id_biological_model: {ref: Biological_models}
     id_sample: {ref: Samples}
+    id_exposure: {ref: Exposure}
     id_solvent: {ref: Solvents}
     id_person: {ref: Persons}
     id_organization: {ref: Organizations}
     id_compound: {ref: Compounds}
-    id_model: {ref: Models}
     id_task: {ref: Tasks}
     id_deliverable: {ref: Deliverables}
     id_work_package: {ref: Workpackages}
-    compound_concentration: {ref: Compounds}
-    compound_units: {ref: Compounds}
     solvent_concentration: {ref: Solvents}
     solvent_units: {ref: Solvents}
     date:
