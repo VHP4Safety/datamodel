@@ -15,7 +15,7 @@ library(DiagrammeR)
 ```
 
 ```{r, out.width=1000}
-file_path <- here::here("conceptual-datamodel.yml")
+file_path <- here::here("concept", "conceptual-datamodel.yml")
 dm <- dm_read_yaml(file_path)
 dm
 
